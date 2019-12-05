@@ -1,0 +1,19 @@
+@startuml
+
+start
+
+:Container overview;
+-> Click on create container;
+:Image overview;
+-> Select and image from list;
+:Container configuration view;
+-> Select name and click run;
+:Creation loading screen;
+-> Creation is done;
+:Container overview;
+if (Container runs webservice?) then (yes)
+    :Open webservice running in container;
+endif
+stop
+
+@enduml
