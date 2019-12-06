@@ -1,9 +1,9 @@
-name: Python application
+name: Python tests
 
 on: [push]
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
 
