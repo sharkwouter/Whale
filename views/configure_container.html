@@ -1,0 +1,10 @@
+% rebase('base')
+<div class="title">
+    <h3>Configure container</h3>
+</div>
+<p>{{ image }}</p>
+<form method="post" action="/create">
+    Name: <input name="name"><br>
+    <input type="hidden" name="image" value="{{image}}">
+    <input type="submit" value="Start">
+</form>
