@@ -1,4 +1,4 @@
-from bottle import Bottle, template, static_file, request, redirect
+from bottle import Bottle, template, static_file, redirect, abort
 from controllers.docker_controller import DockerController
 
 server = Bottle()
@@ -13,24 +13,24 @@ def static(filepath):
 
 @server.route('/')
 def home():
-    containers = docker_controller.get_containers()
-    return template('home', page='Home', containers=containers)
+    return template('home', page='Home', containers=docker_controller.containers)
 
 
 @server.route('/select_image')
-def create():
-    return template('select_image', page='Select Image')
+def select_image():
+    return template('select_image', page='Select Image', images=docker_controller.images)
 
 
-@server.route('/configure_container', method='POST')
-def configure_container():
-    image = request.forms.get('image')
-    return template('configure_container', page='Configure Container', image=image)
+@server.route('/create/<image_name>')
+def create(image_name):
+    image = docker_controller.get_image(image_name)
+    if image:
+        container = docker_controller.create(image)
+        return template('create', page='Creating Image', container=container)
+    else:
+        abort(404, "Image {} not found".format(image_name))
 
 
-@server.route('/create', method='POST')
-def create():
-    name = request.forms.get('name')
-    image = request.forms.get('image')
-    docker_controller.run(image, name)
-    return redirect('/')
+@server.route('/state/<container_id>')
+def get_state(container_id):
+    return container_id

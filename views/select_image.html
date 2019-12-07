@@ -1,10 +1,9 @@
 % rebase('base')
 <div class="title">
-    <h3>Create container</h3>
+    <h3>Creating container</h3>
 </div>
 <p>
-<form method="post" action="/configure_container">
-    Image: <input name="image"><br>
-    <input type="submit" value="Pick">
-    </form>
+    % for image in images:
+    <a href="/create/{{image.name}}">{{image.name}}</a><br>
+    % end
 </p>

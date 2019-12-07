@@ -1,0 +1,18 @@
+{
+  "images": [
+    {
+      "name":  "Gitea",
+      "description": "A painless self-hosted Git service",
+      "container": "gitea/gitea",
+      "volumes": [ "/data" ],
+      "requires_database": false
+    },
+    {
+      "name":  "MediaWiki",
+      "description": "MediaWiki is a free software open source wiki package written in PHP.",
+      "container": "mediawiki",
+      "volumes": [ "/var/www/html/images" ],
+      "requires_database": false
+    }
+  ]
+}

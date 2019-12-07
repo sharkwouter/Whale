@@ -11,5 +11,9 @@ class WebControllerTests(unittest.TestCase):
 
         assert app.get('/').status == '200 OK'
 
+    def test_select_image(self):
+        app = TestApp(server)
+
+        assert app.get('/select_image').status == '200 OK'
 
 
